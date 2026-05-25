@@ -1,28 +1,65 @@
 import fs from "fs";
 import path from "path";
-import { ForumPost, ForumReply, seedForumPosts } from "./forum";
+import { ForumPost, ForumReply } from "./forum";
 
-const DATA_DIR = path.join(process.cwd(), "data");
-const FORUM_FILE = path.join(DATA_DIR, "forum.json");
+const LOCAL_FILE = path.join(process.cwd(), "data", "forum.json");
+const VERCEL_FILE = path.join("/tmp", "linguisless-forum.json");
 
-function ensureDataFile(): void {
-  if (!fs.existsSync(DATA_DIR)) {
-    fs.mkdirSync(DATA_DIR, { recursive: true });
+function getWritablePath(): string {
+  return process.env.VERCEL ? VERCEL_FILE : LOCAL_FILE;
+}
+
+function readBundledPosts(): ForumPost[] {
+  try {
+    if (fs.existsSync(LOCAL_FILE)) {
+      const raw = fs.readFileSync(LOCAL_FILE, "utf-8");
+      const parsed = JSON.parse(raw) as ForumPost[];
+      return Array.isArray(parsed) ? parsed : [];
+    }
+  } catch {
+    // fall through
   }
-  if (!fs.existsSync(FORUM_FILE)) {
-    fs.writeFileSync(FORUM_FILE, JSON.stringify(seedForumPosts, null, 2));
+  return [];
+}
+
+function readPosts(): ForumPost[] {
+  const writablePath = getWritablePath();
+
+  if (writablePath !== LOCAL_FILE) {
+    try {
+      if (fs.existsSync(writablePath)) {
+        const raw = fs.readFileSync(writablePath, "utf-8");
+        const parsed = JSON.parse(raw) as ForumPost[];
+        return Array.isArray(parsed) ? parsed : [];
+      }
+    } catch {
+      // fall through to bundled data
+    }
+  }
+
+  return readBundledPosts();
+}
+
+function writePosts(posts: ForumPost[]): void {
+  const filePath = getWritablePath();
+  try {
+    const dir = path.dirname(filePath);
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+    fs.writeFileSync(filePath, JSON.stringify(posts, null, 2));
+  } catch (error) {
+    console.error("Failed to save forum posts:", error);
+    throw new Error("Forum storage unavailable");
   }
 }
 
 export function getForumPosts(): ForumPost[] {
-  ensureDataFile();
-  const raw = fs.readFileSync(FORUM_FILE, "utf-8");
-  return JSON.parse(raw) as ForumPost[];
+  return readPosts();
 }
 
 export function saveForumPosts(posts: ForumPost[]): void {
-  ensureDataFile();
-  fs.writeFileSync(FORUM_FILE, JSON.stringify(posts, null, 2));
+  writePosts(posts);
 }
 
 export function getForumPostById(id: string): ForumPost | undefined {
@@ -60,10 +97,14 @@ export function addForumReply(
 }
 
 export function incrementViews(postId: string): void {
-  const posts = getForumPosts();
-  const post = posts.find((p) => p.id === postId);
-  if (post) {
-    post.views += 1;
-    saveForumPosts(posts);
+  try {
+    const posts = getForumPosts();
+    const post = posts.find((p) => p.id === postId);
+    if (post) {
+      post.views += 1;
+      saveForumPosts(posts);
+    }
+  } catch {
+    // View counts are non-critical if storage is unavailable
   }
 }
