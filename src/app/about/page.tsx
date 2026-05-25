@@ -47,13 +47,26 @@ export default function AboutPage() {
 
       <section className="mt-12 rounded border border-journal-parchment bg-journal-parchment/30 p-6">
         <h2 className="font-serif text-xl font-bold text-journal-navy">Aims & Scope</h2>
-        <ul className="mt-4 list-disc space-y-2 pl-5 font-sans text-sm text-journal-ink">
-          <li>Satirical and humorous linguistics papers</li>
-          <li>Parodies of academic writing and peer review culture</li>
-          <li>Deliberately bad but entertaining linguistic &quot;analysis&quot;</li>
-          <li>Internet linguistics, meme grammar, and discourse analysis of group chats</li>
-          <li>Anything that would make a prescriptivist cry (harmlessly)</li>
+        <p className="mt-4 font-sans text-sm leading-relaxed text-journal-ink">
+          Linguisless welcomes submissions exploring language, discourse, semiotics, communication,
+          and the increasingly fragile boundary between rigorous scholarship and interpretive
+          overreach.
+        </p>
+        <p className="mt-4 font-sans text-sm font-semibold text-journal-navy">We publish:</p>
+        <ul className="mt-2 list-disc space-y-2 pl-5 font-sans text-sm text-journal-ink">
+          <li>Satirical and humorously overstated linguistics papers</li>
+          <li>Parodies of academic writing, peer review, and theoretical inflation</li>
+          <li>Deliberately questionable yet methodologically sophisticated analyses</li>
+          <li>
+            Research on internet linguistics, meme grammar, fandom discourse, and group chat
+            pragmatics
+          </li>
+          <li>Interdisciplinary work likely to cause mild discomfort to prescriptivists</li>
         </ul>
+        <p className="mt-4 font-sans text-sm leading-relaxed text-journal-ink">
+          We particularly encourage submissions that are simultaneously insightful, unnecessary,
+          and impossible to reviewer-proof.
+        </p>
       </section>
 
       <section className="mt-12">
