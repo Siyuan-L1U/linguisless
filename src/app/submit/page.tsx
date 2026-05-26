@@ -69,6 +69,76 @@ export default function SubmitPage() {
       </p>
 
       <div className="mt-8 space-y-10 font-sans text-sm leading-relaxed text-journal-ink">
+        <section>
+          <h2 className="border-b border-journal-navy pb-2 font-serif text-2xl font-bold text-journal-navy">
+            What We Publish
+          </h2>
+          <p className="mt-4">
+            Linguisless welcomes submissions including, but not limited to:
+          </p>
+          <ul className="mt-3 list-disc space-y-2 pl-5">
+            {publishList.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+          <p className="mt-4">We are particularly interested in work occupying the unstable space between:</p>
+          <blockquote className="mt-2 border-l-4 border-journal-burgundy pl-4 italic text-journal-muted">
+            &ldquo;this is genuinely clever&rdquo;
+          </blockquote>
+          <p className="mt-2 text-center font-medium">and</p>
+          <blockquote className="mt-2 border-l-4 border-journal-burgundy pl-4 italic text-journal-muted">
+            &ldquo;this should probably not exist.&rdquo;
+          </blockquote>
+        </section>
+
+        <section>
+          <h2 className="border-b border-journal-navy pb-2 font-serif text-2xl font-bold text-journal-navy">
+            What We Do Not Publish
+          </h2>
+          <p className="mt-4">We do not publish:</p>
+          <ul className="mt-3 list-disc space-y-2 pl-5">
+            {doNotPublishList.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </section>
+
+        <section>
+          <h2 className="border-b border-journal-navy pb-2 font-serif text-2xl font-bold text-journal-navy">
+            Peer Review Process
+          </h2>
+          <ol className="mt-4 list-decimal space-y-2 pl-5">
+            {peerReviewSteps.map((step) => (
+              <li key={step}>{step}</li>
+            ))}
+          </ol>
+          <p className="mt-6">Average review time currently ranges from:</p>
+          <blockquote className="mt-2 border-l-4 border-journal-burgundy pl-4 italic text-journal-muted">
+            &ldquo;remarkably efficient&rdquo;
+          </blockquote>
+          <p className="mt-2 text-center font-medium">to</p>
+          <blockquote className="mt-2 border-l-4 border-journal-burgundy pl-4 italic text-journal-muted">
+            &ldquo;we forgot.&rdquo;
+          </blockquote>
+        </section>
+
+        <section>
+          <h2 className="border-b border-journal-navy pb-2 font-serif text-2xl font-bold text-journal-navy">
+            Ethical Statement
+          </h2>
+          <p className="mt-4">
+            Authors are expected to maintain basic academic integrity, including:
+          </p>
+          <ul className="mt-2 list-disc space-y-1 pl-5">
+            {ethicalPoints.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+          <p className="mt-4">
+            If your paper accidentally becomes meaningful, please notify the editors immediately.
+          </p>
+        </section>
+
         <section className="rounded border-2 border-journal-burgundy bg-journal-parchment/30 p-6">
           <h2 className="font-serif text-2xl font-bold text-journal-navy">How to Submit</h2>
           <p className="mt-3">
@@ -123,44 +193,10 @@ export default function SubmitPage() {
               <li key={item}>{item}</li>
             ))}
           </ul>
-        </section>
 
-        <section>
-          <h2 className="border-b border-journal-navy pb-2 font-serif text-2xl font-bold text-journal-navy">
-            What We Publish
+          <h2 className="mt-10 border-t border-journal-burgundy/30 pt-8 font-serif text-2xl font-bold text-journal-navy">
+            Formatting Requirements
           </h2>
-          <p className="mt-4">
-            Linguisless welcomes submissions including, but not limited to:
-          </p>
-          <ul className="mt-3 list-disc space-y-2 pl-5">
-            {publishList.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-          <p className="mt-4">We are particularly interested in work occupying the unstable space between:</p>
-          <blockquote className="mt-2 border-l-4 border-journal-burgundy pl-4 italic text-journal-muted">
-            &ldquo;this is genuinely clever&rdquo;
-          </blockquote>
-          <p className="mt-2 text-center font-medium">and</p>
-          <blockquote className="mt-2 border-l-4 border-journal-burgundy pl-4 italic text-journal-muted">
-            &ldquo;this should probably not exist.&rdquo;
-          </blockquote>
-        </section>
-
-        <section>
-          <h2 className="border-b border-journal-navy pb-2 font-serif text-2xl font-bold text-journal-navy">
-            What We Do Not Publish
-          </h2>
-          <p className="mt-4">We do not publish:</p>
-          <ul className="mt-3 list-disc space-y-2 pl-5">
-            {doNotPublishList.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="rounded border border-journal-parchment bg-journal-parchment/30 p-6">
-          <h2 className="font-serif text-2xl font-bold text-journal-navy">Formatting Requirements</h2>
           <p className="mt-4">
             Please format submissions to resemble a real linguistics paper as closely as possible.
           </p>
@@ -174,42 +210,6 @@ export default function SubmitPage() {
           <p className="mt-2">Word documents are accepted with quiet disappointment.</p>
           <p className="mt-2">
             PDFs exported incorrectly from Overleaf will be interpreted as methodological commitment.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="border-b border-journal-navy pb-2 font-serif text-2xl font-bold text-journal-navy">
-            Peer Review Process
-          </h2>
-          <ol className="mt-4 list-decimal space-y-2 pl-5">
-            {peerReviewSteps.map((step) => (
-              <li key={step}>{step}</li>
-            ))}
-          </ol>
-          <p className="mt-6">Average review time currently ranges from:</p>
-          <blockquote className="mt-2 border-l-4 border-journal-burgundy pl-4 italic text-journal-muted">
-            &ldquo;remarkably efficient&rdquo;
-          </blockquote>
-          <p className="mt-2 text-center font-medium">to</p>
-          <blockquote className="mt-2 border-l-4 border-journal-burgundy pl-4 italic text-journal-muted">
-            &ldquo;we forgot.&rdquo;
-          </blockquote>
-        </section>
-
-        <section>
-          <h2 className="border-b border-journal-navy pb-2 font-serif text-2xl font-bold text-journal-navy">
-            Ethical Statement
-          </h2>
-          <p className="mt-4">
-            Authors are expected to maintain basic academic integrity, including:
-          </p>
-          <ul className="mt-2 list-disc space-y-1 pl-5">
-            {ethicalPoints.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-          <p className="mt-4">
-            If your paper accidentally becomes meaningful, please notify the editors immediately.
           </p>
         </section>
       </div>
