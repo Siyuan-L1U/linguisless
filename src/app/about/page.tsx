@@ -40,9 +40,7 @@ export default function AboutPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-12">
       <h1 className="font-serif text-3xl font-bold text-journal-navy">About Linguisless</h1>
-      <p className="mt-1 font-serif text-lg italic text-journal-muted">
-        A Journal of Linguistics, Probably
-      </p>
+      <p className="mt-1 font-serif text-lg italic text-journal-muted">{journalInfo.subtitle}</p>
 
       <div className="mt-8 space-y-6 font-sans text-base leading-relaxed text-journal-ink">
         <p>

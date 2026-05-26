@@ -37,8 +37,8 @@ export interface Issue {
 
 export const journalInfo = {
   name: "Linguisless",
-  fullName: "Linguisless: A Journal of Linguistics",
-  subtitle: "A Journal of Linguistics",
+  fullName: "Linguisless: A Journal of Linguistics, Probably",
+  subtitle: "A Journal of Linguistics, Probably",
   issn: "2353-9595",
   nssn: "2353-9595",
   publisher: "Web of Nothing",
