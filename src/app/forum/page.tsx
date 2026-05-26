@@ -1,6 +1,12 @@
 import Link from "next/link";
 import { getForumPosts } from "@/lib/forum-store";
-import { forumCategories } from "@/lib/forum";
+import {
+  allThreadsCategory,
+  forumCategories,
+  getCategoryName,
+  getContentPreview,
+  resolveCategoryId,
+} from "@/lib/forum";
 
 export const metadata = {
   title: "Forum",
@@ -19,16 +25,12 @@ function formatDate(iso: string) {
   });
 }
 
-function getCategoryName(id: string) {
-  return forumCategories.find((c) => c.id === id)?.name ?? id;
-}
-
 export default async function ForumPage({ searchParams }: ForumPageProps) {
   const { category } = await searchParams;
   let posts = await getForumPosts();
 
   if (category) {
-    posts = posts.filter((p) => p.category === category);
+    posts = posts.filter((p) => resolveCategoryId(p.category) === category);
   }
 
   posts.sort((a, b) => {
@@ -59,22 +61,36 @@ export default async function ForumPage({ searchParams }: ForumPageProps) {
           <h2 className="font-sans text-xs font-semibold uppercase tracking-wider text-journal-navy">
             Categories
           </h2>
-          <ul className="mt-3 space-y-2">
+          <ul className="mt-3 space-y-4">
             <li>
               <Link
                 href="/forum"
-                className={`block font-sans text-sm hover:underline ${!category ? "text-journal-burgundy font-medium" : "text-journal-muted hover:text-journal-navy"}`}
+                className={`block rounded px-2 py-1.5 transition-colors hover:bg-journal-parchment/40 ${!category ? "bg-journal-parchment/50" : ""}`}
               >
-                All Topics
+                <span
+                  className={`block font-sans text-sm ${!category ? "font-medium text-journal-burgundy" : "text-journal-navy"}`}
+                >
+                  {allThreadsCategory.name}
+                </span>
+                <span className="mt-0.5 block font-sans text-xs leading-snug text-journal-muted">
+                  {allThreadsCategory.description}
+                </span>
               </Link>
             </li>
             {forumCategories.map((cat) => (
               <li key={cat.id}>
                 <Link
                   href={`/forum?category=${cat.id}`}
-                  className={`block font-sans text-sm hover:text-journal-navy ${category === cat.id ? "text-journal-burgundy font-medium" : "text-journal-muted"}`}
+                  className={`block rounded px-2 py-1.5 transition-colors hover:bg-journal-parchment/40 ${category === cat.id ? "bg-journal-parchment/50" : ""}`}
                 >
-                  {cat.name}
+                  <span
+                    className={`block font-sans text-sm ${category === cat.id ? "font-medium text-journal-burgundy" : "text-journal-navy"}`}
+                  >
+                    {cat.name}
+                  </span>
+                  <span className="mt-0.5 block font-sans text-xs leading-snug text-journal-muted">
+                    {cat.description}
+                  </span>
                 </Link>
               </li>
             ))}
@@ -93,7 +109,10 @@ export default async function ForumPage({ searchParams }: ForumPageProps) {
                 <div className="col-span-1 hidden text-right sm:block">Date</div>
               </div>
 
-              {posts.map((post) => (
+              {posts.map((post) => {
+                const preview = getContentPreview(post.content);
+
+                return (
                 <Link
                   key={post.id}
                   href={`/forum/${post.id}`}
@@ -113,6 +132,11 @@ export default async function ForumPage({ searchParams }: ForumPageProps) {
                     <p className="mt-1 font-serif text-base font-semibold text-journal-navy">
                       {post.title}
                     </p>
+                    {preview && (
+                      <p className="mt-1 font-sans text-xs leading-relaxed text-journal-muted">
+                        {preview}
+                      </p>
+                    )}
                     <p className="mt-0.5 font-sans text-xs text-journal-muted">by {post.author}</p>
                   </div>
                   <div className="col-span-2 flex items-center justify-center font-sans text-sm text-journal-muted">
@@ -125,7 +149,8 @@ export default async function ForumPage({ searchParams }: ForumPageProps) {
                     {formatDate(post.createdAt)}
                   </div>
                 </Link>
-              ))}
+              );
+              })}
             </div>
           )}
         </div>

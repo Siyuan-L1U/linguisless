@@ -181,10 +181,10 @@ export default function SubmitPage() {
           <p className="mt-6">
             Alternatively, authors may first post unfinished ideas in the forum section{" "}
             <Link
-              href="/forum?category=submissions"
+              href="/forum?category=half-formed-ideas"
               className="text-journal-burgundy hover:underline"
             >
-              Submission Ideas
+              Half-Formed Research Ideas
             </Link>{" "}
             in order to:
           </p>

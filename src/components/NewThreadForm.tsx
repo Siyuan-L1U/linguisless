@@ -12,7 +12,7 @@ export default function NewThreadForm({ onSuccess }: NewThreadFormProps) {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [content, setContent] = useState("");
-  const [category, setCategory] = useState("general");
+  const [category, setCategory] = useState("technical-linguistics");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 

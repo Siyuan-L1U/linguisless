@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getForumPostById, incrementViews } from "@/lib/forum-store";
-import { forumCategories } from "@/lib/forum";
+import { getCategoryName } from "@/lib/forum";
 import ThreadClient from "./ThreadClient";
 
 interface PageProps {
@@ -16,10 +16,6 @@ function formatDateTime(iso: string) {
     hour: "2-digit",
     minute: "2-digit",
   });
-}
-
-function getCategoryName(id: string) {
-  return forumCategories.find((c) => c.id === id)?.name ?? id;
 }
 
 export default async function ThreadPage({ params }: PageProps) {
