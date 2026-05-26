@@ -1,6 +1,6 @@
 # Linguisless
 
-**Linguisless / 语言白学** — A satirical academic linguistics journal.
+**Linguisless** — A satirical academic linguistics journal.
 
 ## Status
 
@@ -48,6 +48,12 @@ npx vercel --prod
 
 - **Web of Nothing:** https://webofnothing.org/journal/Linguisless.html
 - **Email:** linguisless@gmail.com
+
+## Forum (Supabase)
+
+Forum posts are stored in **Supabase** when configured. Without Supabase, the forum falls back to local file storage (not persistent on Vercel).
+
+See **[supabase/SETUP.md](supabase/SETUP.md)** for step-by-step setup.
 
 ## Add Articles
 

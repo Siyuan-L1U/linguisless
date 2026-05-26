@@ -23,9 +23,6 @@ export default function Header() {
             <p className="mt-2 font-sans text-xs uppercase tracking-[0.25em] text-journal-muted">
               {journalInfo.subtitle}
             </p>
-            <p className="mt-1 font-serif text-sm text-journal-muted">
-              {journalInfo.chineseName} · 语言学期刊
-            </p>
           </Link>
         </div>
         <nav className="mt-6 flex flex-wrap items-center justify-center gap-1 border-t border-journal-parchment pt-4">

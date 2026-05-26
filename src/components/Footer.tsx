@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="grid gap-8 md:grid-cols-3">
           <div>
             <h3 className="font-serif text-lg font-bold">Linguisless</h3>
-            <p className="mt-1 font-serif text-sm text-journal-cream/60">{journalInfo.chineseName}</p>
+            <p className="mt-1 font-serif text-sm text-journal-cream/60">{journalInfo.subtitle}</p>
             <p className="mt-2 font-sans text-sm text-journal-cream/70">{journalInfo.tagline}</p>
           </div>
           <div>

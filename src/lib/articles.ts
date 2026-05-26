@@ -37,7 +37,6 @@ export interface Issue {
 
 export const journalInfo = {
   name: "Linguisless",
-  chineseName: "语言白学",
   fullName: "Linguisless: A Journal of Linguistics",
   subtitle: "A Journal of Linguistics",
   issn: "2353-9595",
@@ -48,7 +47,7 @@ export const journalInfo = {
   impactFactor: "0.000",
   tagline: "Published Everywhere. Peer-reviewed-ish.",
   description:
-    "Linguisless (aka 语言白学) is dedicated to all unserious research concerning language. We maintain the aesthetic standards of a top-tier journal while proudly rejecting their methodological ones.",
+    "Linguisless is dedicated to all unserious research concerning language. We maintain the aesthetic standards of a top-tier journal while proudly rejecting their methodological ones.",
   submitEmail: "linguisless@gmail.com",
   editorialEmail: "linguisless@gmail.com",
 };
