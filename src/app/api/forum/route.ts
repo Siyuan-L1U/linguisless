@@ -6,7 +6,7 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const category = searchParams.get("category");
 
-  let posts = getForumPosts();
+  let posts = await getForumPosts();
 
   if (category && category !== "all") {
     posts = posts.filter((p) => p.category === category);
@@ -35,7 +35,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Invalid category" }, { status: 400 });
     }
 
-    const post = addForumPost({
+    const post = await addForumPost({
       title: title.trim(),
       author: author.trim(),
       content: content.trim(),

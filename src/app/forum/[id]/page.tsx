@@ -24,8 +24,8 @@ function getCategoryName(id: string) {
 
 export default async function ThreadPage({ params }: PageProps) {
   const { id } = await params;
-  incrementViews(id);
-  const post = getForumPostById(id);
+  await incrementViews(id);
+  const post = await getForumPostById(id);
 
   if (!post) notFound();
 

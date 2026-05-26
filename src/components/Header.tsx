@@ -3,9 +3,9 @@ import { journalInfo } from "@/lib/articles";
 
 const navItems = [
   { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
   { href: "/issues", label: "Issues" },
   { href: "/articles", label: "Articles" },
-  { href: "/about", label: "About" },
   { href: "/submit", label: "Submit" },
   { href: "/forum", label: "Forum" },
 ];

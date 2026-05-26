@@ -25,7 +25,7 @@ function getCategoryName(id: string) {
 
 export default async function ForumPage({ searchParams }: ForumPageProps) {
   const { category } = await searchParams;
-  let posts = getForumPosts();
+  let posts = await getForumPosts();
 
   if (category) {
     posts = posts.filter((p) => p.category === category);

@@ -8,7 +8,7 @@ interface RouteParams {
 export async function POST(request: Request, { params }: RouteParams) {
   try {
     const { id } = await params;
-    const post = getForumPostById(id);
+    const post = await getForumPostById(id);
 
     if (!post) {
       return NextResponse.json({ error: "Thread not found" }, { status: 404 });
@@ -21,7 +21,7 @@ export async function POST(request: Request, { params }: RouteParams) {
       return NextResponse.json({ error: "Author and content are required" }, { status: 400 });
     }
 
-    const reply = addForumReply(id, {
+    const reply = await addForumReply(id, {
       author: author.trim(),
       content: content.trim(),
       createdAt: new Date().toISOString(),
