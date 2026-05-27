@@ -19,18 +19,19 @@ export const metadata: Metadata = {
   },
 };
 
+import { Analytics } from "@vercel/analytics/next"
+
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="en">
-      <body className="flex min-h-screen flex-col font-serif">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+      <body>
+        {children}
+        <Analytics />
       </body>
     </html>
-  );
+  )
 }
