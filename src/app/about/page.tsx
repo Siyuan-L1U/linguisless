@@ -4,19 +4,6 @@ export const metadata = {
   title: "About",
 };
 
-const disciplines = [
-  "corpus linguistics",
-  "computational linguistics",
-  "discourse analysis",
-  "sociolinguistics",
-  "internet linguistics",
-  "multimodal communication",
-  "AI-mediated interaction",
-  "semiotics",
-  "digital humanities",
-  "and other fields whose boundaries became unstable sometime around 2018",
-];
-
 const encouragedSubmissions = [
   "statistically sophisticated analyses of culturally insignificant phenomena",
   "corpus studies based on alarmingly specific datasets",
@@ -44,9 +31,12 @@ export default function AboutPage() {
 
       <div className="mt-8 space-y-6 font-sans text-base leading-relaxed text-journal-ink">
         <p>
-          Linguisless is an independent journal dedicated to the study of language in all its forms,
-          including spoken, written, multimodal, computational, memetic, algorithmically generated,
-          accidentally translated, and emotionally regrettable forms of communication.
+          Linguisless is an independent journal dedicated to the study of language in all its forms.
+        </p>
+        <p>
+          We publish work related to linguistics, communication, symbols, discourse, interaction,
+          media, translation, memes, AI-generated language, internet culture, and other phenomena
+          that emerge whenever humans (or machines) attempt to mean something.
         </p>
         <p>
           Founded in {journalInfo.founded}, Linguisless is indexed by the{" "}
@@ -58,14 +48,12 @@ export default function AboutPage() {
           >
             Web of Nothing
           </a>{" "}
-          and currently maintains an impact factor best described as &ldquo;emergent.&rdquo;
+          and currently maintains an impact factor best described as &ldquo;developing.&rdquo;
         </p>
-        <p>We publish research situated across linguistics and adjacent disciplines, including:</p>
-        <ul className="list-disc space-y-1 pl-5">
-          {disciplines.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
+        <p>
+          We welcome serious research, questionable methodology, speculative inquiry, accidental
+          breakthroughs, and papers that should probably not exist but somehow do.
+        </p>
       </div>
 
       <section className="mt-12">
