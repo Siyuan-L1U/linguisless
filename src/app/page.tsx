@@ -72,7 +72,7 @@ function HeroSection({ latestIssue }: { latestIssue: (typeof issues)[number] }) 
                 />
               </div>
               <p className="mt-2 text-center font-sans text-xs uppercase tracking-wider text-journal-muted">
-                Inaugural Issue Cover · May 2026
+                Vol. {latestIssue.volume}, Issue {latestIssue.issue} · {latestIssue.published}
               </p>
             </Link>
           </div>

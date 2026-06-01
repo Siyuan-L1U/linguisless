@@ -67,14 +67,14 @@ export const editorialBoard = [
 
 export const issues: Issue[] = [
   {
-    volume: 1,
-    issue: 1,
+    volume: 0,
+    issue: 0,
     year: 2026,
     title: "Inaugural Issue",
     description:
       "The founding issue of Linguisless. History was made. Possibly by accident. Indexed on Web of Nothing.",
-    published: "May 2026",
-    coverImage: "/covers/vol-1-issue-1-cover.png",
+    published: "June 2026",
+    coverImage: "/covers/vol-0-issue-0-cover.png",
   },
 ];
 
