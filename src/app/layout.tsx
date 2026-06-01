@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { journalInfo } from "@/lib/articles";
@@ -19,19 +20,19 @@ export const metadata: Metadata = {
   },
 };
 
-import { Analytics } from "@vercel/analytics/next"
-
 export default function RootLayout({
   children,
-}: {
-  children: React.ReactNode
-}) {
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="en">
-      <body>
-        {children}
+      <body className="flex min-h-screen flex-col font-serif">
+        <Header />
+        <main className="flex-1">{children}</main>
+        <Footer />
         <Analytics />
       </body>
     </html>
-  )
+  );
 }
