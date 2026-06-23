@@ -92,6 +92,10 @@ function writeFilePosts(posts: ForumPost[]): void {
   fs.writeFileSync(filePath, JSON.stringify(posts, null, 2));
 }
 
+function logForumStoreWarning(message: string, error: unknown) {
+  console.warn(`[forum-store] ${message}`, error);
+}
+
 async function getSupabasePosts(): Promise<ForumPost[]> {
   const supabase = createAdminClient();
 
@@ -153,14 +157,22 @@ function newId(prefix = ""): string {
 
 export async function getForumPosts(): Promise<ForumPost[]> {
   if (isSupabaseConfigured()) {
-    return getSupabasePosts();
+    try {
+      return await getSupabasePosts();
+    } catch (error) {
+      logForumStoreWarning("Supabase read failed; falling back to local forum data", error);
+    }
   }
   return readFilePosts();
 }
 
 export async function getForumPostById(id: string): Promise<ForumPost | undefined> {
   if (isSupabaseConfigured()) {
-    return getSupabasePostById(id);
+    try {
+      return await getSupabasePostById(id);
+    } catch (error) {
+      logForumStoreWarning("Supabase read failed; falling back to local forum data", error);
+    }
   }
   return readFilePosts().find((p) => p.id === id);
 }
@@ -176,20 +188,24 @@ export async function addForumPost(
   };
 
   if (isSupabaseConfigured()) {
-    const supabase = createAdminClient();
-    const { error } = await supabase.from("forum_posts").insert({
-      id: newPost.id,
-      title: newPost.title,
-      author: newPost.author,
-      content: newPost.content,
-      category: newPost.category,
-      created_at: newPost.createdAt,
-      views: 0,
-      pinned: false,
-    });
+    try {
+      const supabase = createAdminClient();
+      const { error } = await supabase.from("forum_posts").insert({
+        id: newPost.id,
+        title: newPost.title,
+        author: newPost.author,
+        content: newPost.content,
+        category: newPost.category,
+        created_at: newPost.createdAt,
+        views: 0,
+        pinned: false,
+      });
 
-    if (error) throw error;
-    return newPost;
+      if (error) throw error;
+      return newPost;
+    } catch (error) {
+      logForumStoreWarning("Supabase write failed; falling back to local forum data", error);
+    }
   }
 
   const posts = readFilePosts();
@@ -208,17 +224,21 @@ export async function addForumReply(
   };
 
   if (isSupabaseConfigured()) {
-    const supabase = createAdminClient();
-    const { error } = await supabase.from("forum_replies").insert({
-      id: newReply.id,
-      post_id: postId,
-      author: newReply.author,
-      content: newReply.content,
-      created_at: newReply.createdAt,
-    });
+    try {
+      const supabase = createAdminClient();
+      const { error } = await supabase.from("forum_replies").insert({
+        id: newReply.id,
+        post_id: postId,
+        author: newReply.author,
+        content: newReply.content,
+        created_at: newReply.createdAt,
+      });
 
-    if (error) throw error;
-    return newReply;
+      if (error) throw error;
+      return newReply;
+    } catch (error) {
+      logForumStoreWarning("Supabase reply write failed; falling back to local forum data", error);
+    }
   }
 
   const posts = readFilePosts();
