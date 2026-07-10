@@ -2,59 +2,26 @@
 
 **Linguisless** — A satirical academic linguistics journal.
 
-## Status
+## Repository layout
 
-- ✅ Website built and runs locally
-- ✅ Inaugural cover (Vol. 1, Issue 1, May 2026)
-- ✅ Editor-in-Chief: Dr. Spicy Chicken Wing
-- ✅ Associate Editor: Dr. Bazinga Klingon
-- ✅ Submit via [Web of Nothing](https://webofnothing.org/journal/Linguisless.html) or **linguisless@gmail.com**
-- ⏳ **Permanent public URL** — requires one-time Vercel deploy (see below)
+| Folder | Contents |
+|--------|----------|
+| [`网站/`](./网站/) | Next.js website (source code, deploy from here) |
+| [`图片/`](./图片/) | Cover and marketing images |
+| [`广告/`](./广告/) | Promotional copy and materials |
 
-## Run Locally
+## Website
+
+All site code lives in **`网站/`**. See **[网站/README.md](./网站/README.md)** for local dev, Vercel deploy, and Supabase forum setup.
 
 ```bash
-cd ~/Desktop/linguisless
+cd 网站
 npm install
 npm run dev
 ```
 
 Open http://localhost:3000
 
-## Deploy Publicly (Recommended: Vercel — free, global access)
+### Vercel
 
-1. Create a GitHub repo and push this project
-2. Go to [vercel.com/new](https://vercel.com/new) → Import the repo
-3. Click **Deploy** (no config changes needed)
-4. You get a URL like `https://linguisless.vercel.app` — share this link with anyone
-
-Optional: add a custom domain in Vercel project settings.
-
-### Deploy from terminal (after `vercel login`)
-
-```bash
-npm run build
-npx vercel --prod
-```
-
-## Features
-
-- Journal homepage with ISSN bar, cover image, impact factor 0.000
-- Article archive with full academic paper layout
-- Issues, About, Submit pages
-- Forum with categories, threads, and replies
-
-## Submit
-
-- **Web of Nothing:** https://webofnothing.org/journal/Linguisless.html
-- **Email:** linguisless@gmail.com
-
-## Forum (Supabase)
-
-Forum posts are stored in **Supabase** when configured. Without Supabase, the forum falls back to local file storage (not persistent on Vercel).
-
-See **[supabase/SETUP.md](supabase/SETUP.md)** for step-by-step setup.
-
-## Add Articles
-
-Edit `src/lib/articles.ts`.
+In the Vercel project settings, set **Root Directory** to `网站`, then deploy.

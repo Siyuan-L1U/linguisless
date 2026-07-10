@@ -56,7 +56,7 @@ Visit `/forum`, create a thread, and confirm it appears in Supabase **Table Edit
 ## 6. Push code changes
 
 ```bash
-cd ~/Desktop/linguisless
+cd ~/Desktop/Linguisless/网站
 git add .
 git commit -m "Add Supabase forum storage"
 git push
