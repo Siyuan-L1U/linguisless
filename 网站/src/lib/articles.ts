@@ -73,7 +73,7 @@ export const issues: Issue[] = [
     title: "Inaugural Issue",
     description:
       "The founding issue of Linguisless. History was made. Possibly by accident. Indexed on Web of Nothing.",
-    published: "June 2026",
+    published: "July 2026",
     coverImage: "/covers/vol-0-issue-0-cover.png",
   },
 ];
